@@ -1,0 +1,45 @@
+session-one
+c1:
+	edit function signature 
+		int main(int argc, char** argv)
+	review docs strlen
+		man strlen
+	review docs strncmp
+		man strncmp
+	review docs printf
+		man printf
+	review docs puts
+		main puts
+	fuzzing 1 - run program with no arg
+		./c1
+	fuzzing 2 - run program with incorrect arg pw hackadayu	
+		./c1 katie
+	fuzzing 3 - run program with correct arg pw hackadayu	
+		./c1 hackadayu
+	hack - provide any arg but the correct arg
+          patch 0010077b JNZ LAB_001007a3
+	  patch instruction, file, export program, elf
+	  /home/developer/Documents/hackaday-u/session-one/exercises/ghidra/c1/c1-1
+		chmod +x c1-1
+		./c1-1 katie
+c2:
+	edit function signature 
+		int main(int argc, char** argv)
+	fuzzing 1 - run program with no arg
+		./c2
+	fuzzing 2 - run program with < 5 chars in arg
+		.c2 f
+	fuzzing 3 - run program with correct number of letters in arg
+		./c2 fffff
+	fuzzing 4 - run program with correct number of letters in arg and 1st letter h and 5th letter u
+		./c2 haaau
+	hack - provide any arg, any length > 0
+	  patch 004005b6 CMP RAX,0x0
+	  patch 004005dd NOP
+          patch 004005f3 NOP
+	  /home/developer/Documents/hackaday-u/session-one/exercises/ghidra/c2/c2-1
+		chmod +x c2-1
+		./c2-1 katie
+c3:
+	edit function signature 
+		int main(int argc, char** argv)
